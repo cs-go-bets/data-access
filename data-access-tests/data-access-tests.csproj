@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>CSGOStats.Infrastructure.DataAccess.Tests</RootNamespace>
+
+    <IsPackable>false</IsPackable>
+
+    <AssemblyName>CSGOStats.Infrastructure.DataAccess.Tests</AssemblyName>
+
+    <PackageId>CSGOStats.Infrastructure.DataAccess.Tests</PackageId>
+
+    <Version>0.1.0</Version>
+
+    <Authors />
+
+    <Company />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\data-access\data-access.csproj" />
+  </ItemGroup>
+
+</Project>

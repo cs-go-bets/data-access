@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:12.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=dotFive1
+    container_name: postgres
+    networks:
+      - prime
+
+networks:
+  prime:
+    driver: bridge

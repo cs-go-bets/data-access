@@ -1,0 +1,4 @@
+./data-access/bin/
+./data-access/obj/
+./data-access-tests/bin/
+./data-access-tests/obj/
