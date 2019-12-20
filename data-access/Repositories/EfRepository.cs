@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CSGOStats.Infrastructure.DataAccess.Contexts;
 using CSGOStats.Infrastructure.DataAccess.Entities;
-using CSGOStats.Infrastructure.DataAccess.Extensions;
+using CSGOStats.Infrastructure.Validation;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSGOStats.Infrastructure.DataAccess.Repositories
