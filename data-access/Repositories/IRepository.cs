@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CSGOStats.Infrastructure.DataAccess.Entities;
 
 namespace CSGOStats.Infrastructure.DataAccess.Repositories
@@ -9,17 +6,14 @@ namespace CSGOStats.Infrastructure.DataAccess.Repositories
     public interface IRepository<TEntity>
         where TEntity : class, IEntity
     {
-        [Obsolete("So far there is no sense in having this method")]
-        Task<IReadOnlyList<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> query);
+        Task<TEntity> FindAsync<TKey>(TKey id);
 
-        Task<TIdEntity> FindAsync<TIdEntity>(Guid id) where TIdEntity : class, IHaveIdEntity, TEntity;
+        Task<TEntity> GetAsync<TKey>(TKey id);
 
-        Task<TIdEntity> GetAsync<TIdEntity>(Guid id) where TIdEntity : class, IHaveIdEntity, TEntity;
+        Task AddAsync<TKey>(TKey id, TEntity entity);
 
-        Task AddAsync(TEntity entity);
+        Task UpdateAsync<TKey>(TKey id, TEntity entity);
 
-        Task UpdateAsync(TEntity entity);
-
-        Task DeleteAsync(TEntity entity);
+        Task DeleteAsync<TKey>(TKey id, TEntity entity);
     }
 }

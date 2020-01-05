@@ -10,6 +10,16 @@ services:
     container_name: postgres
     networks:
       - prime
+  mongodb:
+    image: mongo:4.2.2-bionic
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=dotFive1
+    container_name: mongodb
+    networks:
+      - prime
 
 networks:
   prime:

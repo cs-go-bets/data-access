@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CSGOStats.Infrastructure.DataAccess.Contexts
+namespace CSGOStats.Infrastructure.DataAccess.Contexts.EF
 {
     public abstract class BaseDataContext : DbContext
     {
@@ -17,7 +17,11 @@ namespace CSGOStats.Infrastructure.DataAccess.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(_settings.GetConnectionString());
-            optionsBuilder.UseLoggerFactory(new ContextLoggerFactory());
+
+            if (_settings.IsAuditEnabled)
+            {
+                optionsBuilder.UseLoggerFactory(new ContextLoggerFactory());
+            }
         }
 
         private class ContextLoggerFactory : ILoggerFactory

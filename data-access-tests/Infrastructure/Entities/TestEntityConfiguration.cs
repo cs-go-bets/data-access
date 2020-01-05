@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CSGOStats.Infrastructure.DataAccess.Contexts.EF.Conversion;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CSGOStats.Infrastructure.DataAccess.Tests.Infrastructure.Entities
@@ -8,7 +9,7 @@ namespace CSGOStats.Infrastructure.DataAccess.Tests.Infrastructure.Entities
         public void Configure(EntityTypeBuilder<TestEntity> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Date).IsRequired();
+            builder.Property(x => x.Date).IsRequired().OffsetDateTime();
         }
     }
 }

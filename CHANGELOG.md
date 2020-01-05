@@ -1,3 +1,15 @@
+# v0.2.0
+## Added
+* Mongo infrastructure implementation.
+* Service registration extensions.
+## Changed
+* Splitted implementation files according to the framework they relies on.
+* `EFRepository` isn't more abstract.
+* `IRepository<>`'s public methods not do depend on `IHaveId` interface and work with any type of entity.
+* Updated Npgsql package to `3.1.0-preview2` version.
+## Removed
+* Search in `IRepository<>` by expression method.
+
 # v0.1.2
 ## Added
 * NuGet configuration with Nexus link.
