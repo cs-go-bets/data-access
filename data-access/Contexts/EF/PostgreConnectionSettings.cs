@@ -1,4 +1,4 @@
-﻿namespace CSGOStats.Infrastructure.DataAccess.Contexts
+﻿namespace CSGOStats.Infrastructure.DataAccess.Contexts.EF
 {
     public class PostgreConnectionSettings
     {
@@ -10,12 +10,15 @@
 
         public string Password { get; }
 
-        public PostgreConnectionSettings(string host, string database, string username, string password)
+        public bool IsAuditEnabled { get; }
+
+        public PostgreConnectionSettings(string host, string database, string username, string password, bool isAuditEnabled)
         {
             Host = host;
             Database = database;
             Username = username;
             Password = password;
+            IsAuditEnabled = isAuditEnabled;
         }
 
         public string GetConnectionString() =>

@@ -1,5 +1,6 @@
 ﻿using System;
 using CSGOStats.Infrastructure.DataAccess.Entities;
+using NodaTime;
 
 namespace CSGOStats.Infrastructure.DataAccess.Tests.Infrastructure.Entities
 {
@@ -7,32 +8,19 @@ namespace CSGOStats.Infrastructure.DataAccess.Tests.Infrastructure.Entities
     {
         public Guid Id { get; }
 
-        public DateTime Date { get; private set; }
+        public OffsetDateTime Date { get; private set; }
 
-        public TestEntity(Guid id, DateTime date)
+        public TestEntity(Guid id, OffsetDateTime date)
         {
             Id = id;
             Date = date;
         }
 
-        public TestEntity Update()
+        public void Update()
         {
-            Date = GetCurrentDate;
-            return this;
+            Date = DatetimeUtils.GetCurrentDate;
         }
 
-        public void Deconstruct(out Guid id, out DateTime date)
-        {
-            id = Id;
-            date = Date;
-        }
-
-        public static TestEntity CreateEmpty() => new TestEntity(Guid.NewGuid(), GetEmptyDate);
-
-        // TODO: move to shared 'date/time provider'
-        private static DateTime GetCurrentDate => DateTime.UtcNow;
-
-        // TODO: move to shared 'date/time provider'
-        private static DateTime GetEmptyDate => DateTime.MinValue;
+        public static TestEntity CreateEmpty() => new TestEntity(Guid.NewGuid(), DatetimeUtils.GetEmptyDate);
     }
 }

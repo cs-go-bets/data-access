@@ -10,7 +10,7 @@ namespace CSGOStats.Infrastructure.DataAccess.Entities
 
         public object Id { get; }
 
-        public EntityNotFound(string type, object id)
+        private EntityNotFound(string type, object id)
         {
             Type = type;
             Id = id;
@@ -20,5 +20,9 @@ namespace CSGOStats.Infrastructure.DataAccess.Entities
             : base(info, context)
         {
         }
+
+        public static EntityNotFound For<T>(object id) => new EntityNotFound(
+            type: typeof(T).FullName,
+            id: id);
     }
 }
