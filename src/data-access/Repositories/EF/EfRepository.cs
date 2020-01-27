@@ -26,10 +26,10 @@ namespace CSGOStats.Infrastructure.DataAccess.Repositories.EF
                 x.Result ?? 
                 throw EntityNotFound.For<TEntity>(id));
 
-        public async Task AddAsync<TKey>(TKey _, TEntity entity)
+        public Task AddAsync<TKey>(TKey _, TEntity entity)
         {
-            await GetQueryable().AddAsync(entity);
-            await SaveChangesAsync();
+            GetQueryable().Add(entity);
+            return SaveChangesAsync();
         }
 
         public Task UpdateAsync<TKey>(TKey _, TEntity entity)
