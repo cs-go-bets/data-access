@@ -21,33 +21,32 @@ namespace CSGOStats.Infrastructure.DataAccess.Repositories.EF
             return await GetQueryable().FindAsync(id);
         }
 
-        public Task<TEntity> GetAsync<TKey>(TKey id) =>
-            FindAsync(id).ContinueWith(x => 
-                x.Result ?? 
-                throw EntityNotFound.For<TEntity>(id));
+        public async Task<TEntity> GetAsync<TKey>(TKey id)
+        {
+            var result = await FindAsync(id);
+            return result ?? throw EntityNotFound.For<TEntity>(id);
+        }
 
-        public Task AddAsync<TKey>(TKey _, TEntity entity)
+        public async Task AddAsync<TKey>(TKey _, TEntity entity)
         {
             GetQueryable().Add(entity);
-            return SaveChangesAsync();
+            await SaveChangesAsync();
         }
 
-        public Task UpdateAsync<TKey>(TKey _, TEntity entity)
+        public async Task UpdateAsync<TKey>(TKey _, TEntity entity)
         {
             GetQueryable().Update(entity);
-            return SaveChangesAsync();
+            await SaveChangesAsync();
         }
 
-        public Task DeleteAsync<TKey>(TKey _, TEntity entity)
+        public async Task DeleteAsync<TKey>(TKey _, TEntity entity)
         {
             GetQueryable().Remove(entity);
-            return SaveChangesAsync();
+            await SaveChangesAsync();
         }
 
-        private DbSet<TEntity> GetQueryable() =>
-            _context.Set<TEntity>();
+        private DbSet<TEntity> GetQueryable() => _context.Set<TEntity>();
 
-        private Task SaveChangesAsync() =>
-            _context.SaveChangesAsync();
+        private async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }
