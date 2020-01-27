@@ -1,3 +1,7 @@
+# v0.2.2
+## Changed
+* Awaited all database operations for `EfRepository<>`.
+
 # v0.2.1
 ## Changed
 * Switched to synchronous entity add in `EfRepository<>` because asynchronous version threw concurrency exception in some cases.
